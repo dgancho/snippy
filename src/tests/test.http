@@ -1,0 +1,75 @@
+### Snippy Azure Functions API Test Suite
+# This file contains HTTP requests for testing the Snippy Azure Functions endpoints using a REST client.
+# It demonstrates typical usage scenarios:
+# - Saving code snippets (with and without explicit projectId)
+# - Retrieving snippets by name
+# - Generating wiki documentation for all snippets
+# - Generating a code style guide via AI agent
+
+### Basic Snippet Operations
+
+### Save a new snippet with projectId
+POST http://localhost:7071/api/snippets
+Content-Type: application/json
+
+{
+    "name": "test-snippet",
+    "projectId": "test-project",
+    "code": "print('Snippy!')"
+}
+
+### Save a new snippet without projectId (will use default)
+POST http://localhost:7071/api/snippets
+Content-Type: application/json
+
+{
+    "name": "test-snippet-default-project",
+    "code": "print('Snippy!')"
+}
+
+### Get a snippet by name
+GET http://localhost:7071/api/snippets/test-snippet
+
+### Complex Snippet Operations
+
+### Save a complex snippet with projectId
+POST http://localhost:7071/api/snippets
+Content-Type: application/json
+
+{
+    "name": "complex-snippet",
+    "projectId": "test-project",
+    "code": "class Calculator:\n    def __init__(self):\n        self.result = 0\n\n    def add(self, x, y):\n        return x + y\n\n    def subtract(self, x, y):\n        return x - y\n\n    def multiply(self, x, y):\n        return x * y\n\n    def divide(self, x, y):\n        if y == 0:\n            raise ValueError('Cannot divide by zero')\n        return x / y"
+}
+
+### Save a complex snippet without projectId
+POST http://localhost:7071/api/snippets
+Content-Type: application/json
+
+{
+    "name": "complex-snippet-default",
+    "code": "class Calculator:\n    def __init__(self):\n        self.result = 0\n\n    def add(self, x, y):\n        return x + y\n\n    def subtract(self, x, y):\n        return x - y\n\n    def multiply(self, x, y):\n        return x * y\n\n    def divide(self, x, y):\n        if y == 0:\n            raise ValueError('Cannot divide by zero')\n        return x / y"
+}
+
+### Get the complex snippet
+GET http://localhost:7071/api/snippets/complex-snippet
+
+### AI-Powered Analysis Operations
+
+### Generate wiki documentation for all snippets
+POST http://localhost:7071/api/snippets/wiki
+Content-Type: application/json
+
+{
+    "chatHistory": "User: How do I implement vector search in Azure Functions?\nCopilot: You can use Azure Cosmos DB's vector search capabilities. Here's an example of how to set up the vector index and perform searches.\nUser: Can you show me how to integrate this with Azure OpenAI for generating embeddings?\nCopilot: Yes, you'll need to use the Azure OpenAI embeddings API. Here's how to set up the embeddings client and generate vectors for your code snippets.\nUser: What's the best way to structure the function app for handling both HTTP and MCP triggers?\nCopilot: You can use the same function logic for both triggers, just with different bindings. Here's a pattern that works well for this.",
+    "userQuery": "Generate comprehensive documentation for all code snippets"
+}
+
+### Generate code style guide using AI agent
+POST http://localhost:7071/api/snippets/code-style
+Content-Type: application/json
+
+{
+    "chatHistory": "User: What's the recommended way to handle errors in Azure Functions?\nCopilot: You should use try-catch blocks and return appropriate HTTP status codes. Here's a pattern for consistent error handling.\nUser: How should I structure my logging in Azure Functions?\nCopilot: Use the built-in logging framework and include correlation IDs. Here's an example of structured logging.\nUser: What's the best practice for managing environment variables in Azure Functions?\nCopilot: Use the built-in configuration system and avoid hardcoding values. Here's how to properly manage your settings.",
+    "userQuery": "Generate a code style guide for the project"
+} 

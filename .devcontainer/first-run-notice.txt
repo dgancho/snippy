@@ -1,0 +1,30 @@
+# 🚀 Welcome to Snippy Codespace!
+
+## What is Snippy?
+Snippy is an intelligent code snippet service that demonstrates Azure Functions with MCP (Model Context Protocol) tools - making your functions accessible to GitHub Copilot and other AI assistants.
+
+## 📋 Features
+- Save code snippets with vector embeddings in Cosmos DB
+- Perform semantic search across your code library
+- Generate documentation and style guides with AI agents
+- Experience MCP integration with GitHub Copilot
+
+## 🛠️ Getting Started
+1. Authenticate with Azure:
+   ```bash
+   azd auth login --use-device-code
+   ```
+
+2. Deploy all resources:
+   ```bash
+   azd up
+   ```
+
+3. Once deployed, use the MCP URL with GitHub Copilot Chat in Agent mode!
+
+## 📚 Resources
+- [Azure Functions Documentation](https://learn.microsoft.com/azure/azure-functions/)
+- [Model Context Protocol (MCP) Spec](https://aka.ms/mcp)
+- [Azure Functions Remote MCP Docs](https://aka.ms/azure-functions-mcp)
+
+> **Note:** This Codespace is pre-configured with a Python virtual environment at `src/.venv`. All dependencies will be installed there automatically during setup.
